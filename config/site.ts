@@ -23,13 +23,17 @@
 //   pendingExpiryMinutes: 120,
 //   slotIntervalMinutes: 15,
 // };
-
 export const siteConfig = {
   name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "Apna Barber",
   tagline: "Your personal care, your way.",
   description:
     "Find the right barber, choose your services and preferred date — we find the earliest available appointment for you.",
   url: "https://apnabarber.app",
+
+  email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || "",
+  phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "",
+  city: process.env.NEXT_PUBLIC_BUSINESS_CITY || "",
+  state: process.env.NEXT_PUBLIC_BUSINESS_STATE || "",
 
   nav: [
     { label: "Explore", href: "/explore" },
