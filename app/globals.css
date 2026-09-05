@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Self-hosted variable fonts (see app/layout.tsx) — defined as CSS
+       variables so tailwind.config.ts's fontFamily.sans/display, which
+       reference var(--font-inter)/var(--font-manrope), don't need to change
+       regardless of which font-loading mechanism app/layout.tsx uses. */
+    --font-inter: 'Inter Variable', sans-serif;
+    --font-manrope: 'Manrope Variable', sans-serif;
+
+    /* APNA BARBER — Dark theme (default) */
+    --background: 213 19% 5%;        /* #090B0D */
+    --foreground: 200 20% 97%;       /* #F5F7F8 */
+
+    --surface: 215 18% 8%;           /* #111417 */
+    --surface-elevated: 215 16% 11%; /* #171B1F */
+    --surface-hover: 215 16% 14%;    /* #1D2227 */
+
+    --card: 215 18% 8%;              /* #111417 */
+    --card-foreground: 200 20% 97%;
+
+    --popover: 215 16% 11%;
+    --popover-foreground: 200 20% 97%;
+
+    --primary: 195 100% 77%;         /* #8BE9FF */
+    --primary-foreground: 213 19% 5%;
+    --primary-hover: 187 78% 57%;   /* #3CCCE8 */
+
+    --secondary: 215 18% 8%;
+    --secondary-foreground: 200 20% 97%;
+
+    --muted: 215 16% 11%;
+    --muted-foreground: 213 10% 56%; /* #A7B0B8 */
+
+    --accent: 215 16% 11%;
+    --accent-foreground: 200 20% 97%;
+
+    --destructive: 0 100% 71%;       /* #FF6B6B */
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 47% 60%;         /* #55D68A */
+    --success-foreground: 213 19% 5%;
+
+    --warning: 38 82% 69%;           /* #F2C66D */
+    --warning-foreground: 213 19% 5%;
+
+    --info: 213 100% 74%;            /* #7DB7FF */
+    --info-foreground: 213 19% 5%;
+
+    --border: 213 14% 17%;           /* #272D33 */
+    --border-strong: 213 14% 23%;    /* #343B42 */
+
+    --input: 213 14% 17%;
+    --ring: 195 100% 77%;
+
+    --radius: 0.625rem;
+
+    --chart-1: 195 100% 77%;
+    --chart-2: 142 47% 60%;
+    --chart-3: 38 82% 69%;
+    --chart-4: 0 100% 71%;
+    --chart-5: 213 100% 74%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border-strong));
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .glass {
+    background: hsl(var(--background) / 0.7);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+  }
+  .glass-strong {
+    background: hsl(var(--surface-elevated) / 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #8BE9FF 0%, #5DD8F2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .bg-radial-fade {
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--primary) / 0.08), transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
